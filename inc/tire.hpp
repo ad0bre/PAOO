@@ -1,20 +1,22 @@
-#ifndef TIRE_H
-#define TIRE_H
+#ifndef TIRE_HPP
+#define TIRE_HPP
 
 #include <string>
 
+using namespace std;
+
 class Tire {
 private:
-    std::string model;
+    string model;
     int numberOfLaps;
 
 public:
     Tire();
-    Tire(const std::string &model, int numberOfLaps);
-    std::string getModel();
+    Tire(const string &model, int numberOfLaps);
+    string getModel();
     int getNumberOfLaps();
     void reduceLaps(int ammount);
-    std::string toString();
+    string toString();
     Tire& operator=(const Tire& tire);
     ~Tire();
 };
