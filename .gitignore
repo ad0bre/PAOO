@@ -56,6 +56,6 @@
 
 # End of https://www.toptal.com/developers/gitignore/api/c++,visualstudiocode
 
-#Ignore build folder components except for the .gitkeep file
-!build/.gitkeep
+#ignore all files in the build directory
 build/*
+!build/.gitignore
