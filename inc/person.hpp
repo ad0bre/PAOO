@@ -11,11 +11,13 @@ class Person {
         int age;
         string country;
     public:
+        Person();
         Person(string name, int age, string country);
         string getName();
         string getCountry();
         int getAge();
         string toString();
+        ~Person();
 };
 
 #endif

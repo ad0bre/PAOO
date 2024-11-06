@@ -1,6 +1,14 @@
 #include "../inc/person.hpp"
+#include <iostream>
 
 using namespace std;
+
+Person::Person() 
+{
+    name = "";
+    age = 0;
+    country = "";
+}
 
 Person::Person(string name, int age, string country) : 
     name(name), 
@@ -25,4 +33,9 @@ int Person::getAge()
 string Person::toString() 
 {
     return "Name: " + name + ", Age: " + to_string(age) + ", Country: " + country;
+}
+
+Person::~Person() 
+{
+    cout << "Person object destroyed" << endl;
 }
