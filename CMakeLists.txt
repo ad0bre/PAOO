@@ -13,3 +13,7 @@ else()
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
     endif()
 endif()
+
+include_directories(include) # include header files
+
+add_executable(${project} src/*.cpp) # add all source files to the project
