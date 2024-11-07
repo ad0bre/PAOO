@@ -36,7 +36,7 @@ string Race::getName()
 void Race::addTeam(Team* team)
 {
     teams.push_back(team);
-    cout << "New team added to race " << name << ":\n" << team->toString() << endl;
+    cout << "New team added to race " << name << ":\n" << team->getName() << endl;
 }
 
 void Race::createDriversFromTeams()
@@ -54,10 +54,10 @@ void Race::createDriversFromTeams()
     for (Team* team : teams) {
         cars[iterator++] = team->getCar1();
         cars[iterator++] = team->getCar2();
-        cout << "From team " << team->getName() << ": " << 
-            team->getCar1()->getDriver()->toString() << " starting P" << iterator - 1 <<
-            " and " << 
-            team->getCar2()->getDriver()->toString() << " starting P" << iterator << endl;
+        cout << "From team " << team->getName() << ": " << endl;
+        cout << team->getCar1()->getDriver()->getName() << " starting P" << iterator - 1 << endl;
+        cout << " and " << endl;
+        cout << team->getCar2()->getDriver()->getName() << " starting P" << iterator << endl;
     }
 }
 
@@ -72,21 +72,25 @@ void Race::simulateRace()
 
     for (int i = 0; i < totalLaps; i++) {
         cout << "|     Lap " << i + 1 << "    |" << endl;
-        int lucky = (rand() % totalCars) + 1;
-        if (lucky != 1) {
+        cars[0]->disableDRS();
+        int lucky = rand() % totalCars;
+        if (lucky == 0) {
+            lucky = 2;
+        }
+        if (lucky > 0) {
             cars[lucky]->enableDRS();
         }
         
         if (cars[lucky - 1]->hasDRSActive()) {
             cars[lucky - 1]->disableDRS();
         }
-        else {
+        else{
             int j = lucky;
-            cars[j]->disableDRS();
             Car* carInFront = cars[j - 1];
             cars[j - 1] = cars[j];
             cars[j] = carInFront;
             cout << cars[j - 1]->getDriver()->getName() << " overtakes " << cars[j]->getDriver()->getName() << endl;
+            cars[j - 1]->disableDRS();
         }
     }
 
@@ -96,6 +100,23 @@ void Race::simulateRace()
         "1. " << cars[0]->getDriver()->getName() << endl <<
         "2. " << cars[1]->getDriver()->getName() << endl <<
         "3. " << cars[2]->getDriver()->getName() << endl;
+}
+
+Race& Race::operator=(const Race &race)
+{
+    if (this == &race) 
+    {
+        return *this;
+    }
+
+    name = race.name;
+    totalLaps = race.totalLaps;
+    teams = race.teams;
+    cars = (Car**) realloc(cars, sizeof(Car) * 2);
+    if (cars == NULL) {
+        cout << "Failed to reallocate memory for drivers" << endl;
+        exit(1);
+    }
 }
 
 Race::~Race() 

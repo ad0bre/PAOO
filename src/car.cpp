@@ -35,7 +35,8 @@ Car::Car(const string &model, Engine* engine, Aero* wing, Tire* tires, Person* d
     model(model), 
     engine(engine), 
     wing(wing), 
-    tires(tires) 
+    tires(tires),
+    driver(driver)
 {
     hasDRS = false;
 }
@@ -100,13 +101,13 @@ void Car::replaceDriver(Person* driver)
 void Car::enableDRS()
 {
     hasDRS = true;
-    cout << "DRS enabled on car " << this->getModel() << endl;
+    cout << "DRS enabled for driver " << driver->getName() << endl;
 }
 
 void Car::disableDRS()
 {
     hasDRS = false;
-    cout << "DRS disabled on car " << this->getModel() << endl;
+    cout << "DRS disabled for driver " << driver->getName() << endl;
 }
 
 bool Car::hasDRSActive()

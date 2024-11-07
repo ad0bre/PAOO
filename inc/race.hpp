@@ -23,6 +23,7 @@ class Race {
         void createDriversFromTeams();
         void simulateRace();
         string toString();
+        Race& operator=(const Race &race);
         ~Race();
 };
 

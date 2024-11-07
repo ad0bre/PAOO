@@ -105,11 +105,11 @@ Car* Team::getCar2()
 
 string Team::toString()
 {
-    return "Team " + name + ":\n" 
-        + "Principal: " + principal->toString() + "\n"
+    return "Team " + this->name + ":\n" 
+        + "Principal: " + principal->getName() + "\n"
         + "Car1: " + car1->toString() + "\n"
         + "Car2: " + car2->toString() + "\n"
-        + "Mechanic: " + mechanic->toString();
+        + "Mechanic: " + mechanic->getName();
 }
 
 Team& Team::operator=(const Team& team)
