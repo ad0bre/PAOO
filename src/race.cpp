@@ -117,10 +117,15 @@ Race& Race::operator=(const Race &race)
         cout << "Failed to reallocate memory for drivers" << endl;
         exit(1);
     }
+    return *this;
 }
 
 Race::~Race() 
 {
+    int size = teams.size() * 2;
+    for (int i = 0; i < size; i++) {
+        delete cars[i];
+    }
     delete cars;
     for (Team* team : teams) {
         delete team;
