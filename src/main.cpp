@@ -67,7 +67,7 @@ int main()
 
     Team* team1 = new Team("RBR", principal1, car11, car12, mechanic1);
     Team* team2 = new Team("MER", principal2, car21, car22, mechanic2);
-    Team* team1 = new Team("FER", principal3 car31, car32, mechanic3);
+    Team* team3 = new Team("FER", principal3, car31, car32, mechanic3);
 
     Race* race = new Race("Monaco GP", 10);
     race->addTeam(team1);
