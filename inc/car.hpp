@@ -32,6 +32,7 @@ public:
     string toString();
     Car& operator=(const Car& car);
     ~Car();
+    Person* getDriver();
 
 };
 

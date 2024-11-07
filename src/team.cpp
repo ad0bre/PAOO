@@ -12,19 +12,14 @@ Team::Team()
         cout << "Failed to allocate memory for principal" << endl;
         exit(1);
     }
-    car = (Car*) malloc(sizeof(Car));
-    if (car == NULL) {
+    car1 = (Car*) malloc(sizeof(Car));
+    if (car1 == NULL) {
         cout << "Failed to allocate memory for car" << endl;
         exit(1);
     }
-    driver1 = (Person*) malloc(sizeof(Person));
-    if (driver1 == NULL) {
-        cout << "Failed to allocate memory for driver1" << endl;
-        exit(1);
-    }
-    driver2 = (Person*) malloc(sizeof(Person));
-    if (driver2 == NULL) {
-        cout << "Failed to allocate memory for driver2" << endl;
+    car2 = (Car*) malloc(sizeof(Car));
+    if (car2 == NULL) {
+        cout << "Failed to allocate memory for car" << endl;
         exit(1);
     }
     mechanic = (Person*) malloc(sizeof(Person));
@@ -34,12 +29,11 @@ Team::Team()
     }
 }
 
-Team::Team(const string &name, Person* principal, Car* car, Person* driver1, Person* driver2, Person* mechanic) : 
+Team::Team(const string &name, Person* principal, Car* car1, Car* car2, Person* mechanic) : 
     name(name), 
     principal(principal), 
-    car(car), 
-    driver1(driver1), 
-    driver2(driver2), 
+    car1(car1), 
+    car2(car2), 
     mechanic(mechanic) {}
 
 string Team::getName()
@@ -60,43 +54,30 @@ void Team::replacePrincipal(Person* principal)
     cout << "Principal of team " << this->getName() << " replaced" << endl;
 }
 
-void Team::replaceCar(Car* car)
+void Team::replaceCar1(Car* car)
 {
-    Car* oldCar = this->car;
-    this->car = (Car*)malloc(sizeof(Car));
-    if (this->car == NULL) {
+    Car* oldCar = this->car1;
+    this->car1 = (Car*)malloc(sizeof(Car));
+    if (this->car1 == NULL) {
         cout << "Failed to allocate memory for car" << endl;
         exit(1);
     }
-    this->car = car;
+    this->car1 = car;
     free(oldCar);
     cout << "Car of team " << this->getName() << " replaced" << endl;
 }
 
-void Team::replaceDriver1(Person* driver1)
+void Team::replaceCar2(Car* car)
 {
-    Person* oldDriver1 = this->driver1;
-    this->driver1 = (Person*)malloc(sizeof(Person));
-    if (this->driver1 == NULL) {
-        cout << "Failed to allocate memory for driver1" << endl;
+    Car* oldCar = this->car2;
+    this->car2 = (Car*)malloc(sizeof(Car));
+    if (this->car2 == NULL) {
+        cout << "Failed to allocate memory for car" << endl;
         exit(1);
     }
-    this->driver1 = driver1;
-    free(oldDriver1);
-    cout << "Driver 1 of team " << this->getName() << " replaced" << endl;
-}
-
-void Team::replaceDriver2(Person* driver2)
-{
-    Person* oldDriver2 = this->driver2;
-    this->driver2 = (Person*)malloc(sizeof(Person));
-    if (this->driver2 == NULL) {
-        cout << "Failed to allocate memory for driver2" << endl;
-        exit(1);
-    }
-    this->driver2 = driver2;
-    free(oldDriver2);
-    cout << "Driver 2 of team " << this->getName() << " replaced" << endl;
+    this->car2 = car;
+    free(oldCar);
+    cout << "Car of team " << this->getName() << " replaced" << endl;
 }
 
 void Team::replaceMechanic(Person* mechanic)
@@ -112,13 +93,22 @@ void Team::replaceMechanic(Person* mechanic)
     cout << "Mechanic of team " << this->getName() << " replaced" << endl;
 }
 
+Car* Team::getCar1()
+{
+    return car1;
+}
+
+Car* Team::getCar2()
+{
+    return car2;
+}
+
 string Team::toString()
 {
     return "Team " + name + ":\n" 
         + "Principal: " + principal->toString() + "\n"
-        + "Car: " + car->toString() + "\n"
-        + "Driver 1: " + driver1->toString() + "\n"
-        + "Driver 2: " + driver2->toString() + "\n"
+        + "Car1: " + car1->toString() + "\n"
+        + "Car2: " + car2->toString() + "\n"
         + "Mechanic: " + mechanic->toString();
 }
 
@@ -130,9 +120,8 @@ Team& Team::operator=(const Team& team)
 
     name = team.name;
     replacePrincipal(team.principal);
-    replaceCar(team.car);
-    replaceDriver1(team.driver1);
-    replaceDriver2(team.driver2);
+    replaceCar1(team.car1);
+    replaceCar2(team.car2);
     replaceMechanic(team.mechanic);
     return *this;
 }
@@ -140,9 +129,8 @@ Team& Team::operator=(const Team& team)
 Team::~Team()
 {
     delete principal;
-    delete car;
-    delete driver1;
-    delete driver2;
+    delete car1;
+    delete car1;
     delete mechanic;
     cout << "Team " << name << " deleted" << endl;
 }

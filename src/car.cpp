@@ -116,7 +116,8 @@ bool Car::hasDRSActive()
 
 string Car::toString()
 {
-    return "Car " + model + ":\n" 
+    return "Car " + model + ":\n"
+        + "Driver: " + driver->toString() + "\n"
         + "Engine: " + engine->toString() + "\n"
         + "Wing: " + wing->toString() + "\n"
         + "Tires: " + tires->toString() + "\n"
@@ -144,4 +145,9 @@ Car::~Car()
     delete tires;
     delete driver;
     cout << "Car object destroyed" << endl;
+}
+
+Person* Car::getDriver()
+{
+    return driver;
 }

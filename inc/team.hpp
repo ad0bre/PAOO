@@ -11,19 +11,19 @@ class Team {
 private:
     string name;
     Person* principal;
-    Car* car;
-    Person* driver1;
-    Person* driver2;
+    Car* car1;
+    Car* car2;
     Person* mechanic;
 public:
     Team();
-    Team(const string &name, Person* principal, Car* car, Person* driver1, Person* driver2, Person* mechanic);
+    Team(const string &name, Person* principal, Car* car1, Car* car2, Person* mechanic);
     string getName();
     void replacePrincipal(Person* principal);
-    void replaceCar(Car* car);
-    void replaceDriver1(Person* driver1);
-    void replaceDriver2(Person* driver2);
+    void replaceCar1(Car* car);
+    void replaceCar2(Car* car);
     void replaceMechanic(Person* mechanic);
+    Car* getCar1();
+    Car* getCar2();
     string toString();
     Team& operator=(const Team& team);
     ~Team();
