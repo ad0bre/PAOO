@@ -130,7 +130,7 @@ Team::~Team()
 {
     delete principal;
     delete car1;
-    delete car1;
+    delete car2;
     delete mechanic;
     cout << "Team " << name << " deleted" << endl;
 }

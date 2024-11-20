@@ -1,2 +1,0 @@
-/usr/bin/ar qc build/lib/librace_lib.a CMakeFiles/race_lib.dir/src/aero.cpp.o CMakeFiles/race_lib.dir/src/car.cpp.o CMakeFiles/race_lib.dir/src/engine.cpp.o CMakeFiles/race_lib.dir/src/person.cpp.o CMakeFiles/race_lib.dir/src/race.cpp.o CMakeFiles/race_lib.dir/src/team.cpp.o CMakeFiles/race_lib.dir/src/tire.cpp.o
-/usr/bin/ranlib build/lib/librace_lib.a

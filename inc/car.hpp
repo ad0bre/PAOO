@@ -2,9 +2,6 @@
 #define CAR_HPP
 
 #include <string>
-#include "engine.hpp"
-#include "aero.hpp"
-#include "tire.hpp"
 #include "person.hpp"
 
 using namespace std;
@@ -12,19 +9,15 @@ using namespace std;
 class Car {
 private:
     string model;
-    Engine* engine;
-    Aero* wing;
-    Tire* tires;
+    string tires;
+    int numberOfLaps;
     Person* driver;
     bool hasDRS;
 
 public:
     Car();
-    Car(const string &model, Engine* engine, Aero* wing, Tire* tires, Person* driver);
+    Car(const string &model,string tires, int numberOfLaps, Person* driver);
     string getModel();
-    void replaceEngine(Engine* engine);
-    void replaceWing(Aero* wing);
-    void replaceTires(Tire* tires);
     void replaceDriver(Person* driver);
     void enableDRS();
     void disableDRS();

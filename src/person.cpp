@@ -37,5 +37,5 @@ string Person::toString()
 
 Person::~Person() 
 {
-    cout << "Person object destroyed" << endl;
+    cout << "Person (" << name << ") object destroyed" << endl;
 }

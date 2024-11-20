@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0) # minimum version of cmake required
+cmake_minimum_required(VERSION 3.0...3.5) # minimum version of cmake required
 
 set(project "race") # set variable containing project name
 set(SOURCE_DIR "${CMAKE_SOURCE_DIR}/src") # set variable containing source directory

@@ -1,4 +1,0 @@
-/home/lukyan/uni/paoo/PAOO/CMakeFiles/race_lib.dir
-/home/lukyan/uni/paoo/PAOO/CMakeFiles/race.dir
-/home/lukyan/uni/paoo/PAOO/CMakeFiles/edit_cache.dir
-/home/lukyan/uni/paoo/PAOO/CMakeFiles/rebuild_cache.dir
