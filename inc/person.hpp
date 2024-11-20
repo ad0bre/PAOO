@@ -18,6 +18,9 @@ class Person {
         int getAge();
         string toString();
         ~Person();
+        Person& operator=(const Person& person);
+        Person(const Person&& person) = delete;
+        Person& operator=(const Person&& person) = delete;
 };
 
 #endif

@@ -32,3 +32,15 @@ Person::~Person()
 {
     cout << "Person (" << name << ") object destroyed" << endl;
 }
+
+Person& Person::operator=(const Person& person) 
+{
+    cout << "Called Person copy assignment operator: Person (" << this->name << ") = Person (" << person.name << ")." << endl;
+    if (this == &person) {
+        return *this;
+    }
+    name = person.name;
+    age = person.age;
+    country = person.country;
+    return *this;
+}

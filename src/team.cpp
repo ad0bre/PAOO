@@ -104,8 +104,12 @@ Team& Team::operator=(const Team& team)
 Team::~Team()
 {
     delete principal;
-    delete car1;
-    delete car2;
+    if (car1 != nullptr) {
+        delete car1;
+    }
+    if (car2 != nullptr) {
+        delete car2;
+    }
     delete mechanic;
     cout << "Team " << name << " deleted" << endl;
 }

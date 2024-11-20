@@ -20,14 +20,7 @@ string Car::getModel()
 
 void Car::replaceDriver(Person* driver)
 {
-    Person* oldDriver = this->driver;
-    this->driver = (Person*)malloc(sizeof(Person));
-    if (this->driver == NULL) {
-        cout << "Failed to allocate memory for engine" << endl;
-        exit(1);
-    }
     this->driver = driver;
-    free(oldDriver);
     cout << "Driver of car " << this->getModel() << " replaced" << endl;
 }
 
@@ -59,6 +52,7 @@ string Car::toString()
 
 Car& Car::operator=(const Car& car)
 {
+    cout << "Called Car copy assignment operator: Car (" << this->model << ") = Car (" << car.model << ")." << endl;
     if (this == &car) {
         return *this;
     }
@@ -80,3 +74,26 @@ Person* Car::getDriver()
 {
     return driver;
 }
+
+Car::Car(const Car& car) : 
+    model(car.model),
+    tires(car.tires),
+    driver(new Person(car.driver->getName(), car.driver->getAge(), car.driver->getCountry())),
+    numberOfLaps(car.numberOfLaps),
+    hasDRS(false) {
+        cout << "Called Car copy constructor: Car (" << car.model << ")." << endl;
+    }
+
+Car& Car::operator=(Car&& other) noexcept {
+        if (this != &other) {
+            model = std::move(other.model);
+            tires = std::move(other.tires);
+            numberOfLaps = other.numberOfLaps;
+            hasDRS = other.hasDRS;
+
+            delete driver;       // Clean up existing resource
+            driver = other.driver; // Transfer ownership
+            other.driver = nullptr; // Leave source in a valid state
+        }
+        return *this;
+    }

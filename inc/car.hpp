@@ -26,7 +26,10 @@ public:
     Car& operator=(const Car& car);
     ~Car();
     Person* getDriver();
-
+    Car(const Car& car);
+    Car(const Car&& car) = delete;
+    Car& operator=(const Car&& car) = delete;
+    Car& operator=(Car&& other) noexcept;
 };
 
 #endif

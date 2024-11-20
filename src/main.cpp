@@ -8,6 +8,8 @@
 
 int main()
 {
+    srand(time(NULL)); //get different results each run
+
     Person* driver11 = new Person("Max", 26, "NL");
     Person* driver12 = new Person("Checo", 36, "MX");
 

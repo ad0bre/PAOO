@@ -12,7 +12,7 @@ class Race {
     private:
         string name;
         list<Team*> teams;
-        Car** cars;
+        Car* cars;
         int totalLaps;
     public:
         Race() = delete;
