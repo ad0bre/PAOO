@@ -59,3 +59,7 @@
 #ignore all files in the build directory
 build/*
 !build/.gitignore
+
+CMakeCache.txt
+cmake_install.cmake
+CMakeFiles

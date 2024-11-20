@@ -15,7 +15,7 @@ private:
     bool hasDRS;
 
 public:
-    Car();
+    Car() = delete;
     Car(const string &model,string tires, int numberOfLaps, Person* driver);
     string getModel();
     void replaceDriver(Person* driver);

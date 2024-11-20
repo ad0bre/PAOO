@@ -4,20 +4,6 @@
 
 using namespace std;
 
-Car::Car() 
-{
-    model = "NULL Model";
-    hasDRS = false;
-    tires = "Pirelli";
-    numberOfLaps = 1;
-    driver = (Person*) malloc(sizeof(Person));
-    if (driver == NULL) {
-        cout << "Failed to allocate memory for driver" << endl;
-        exit(1);
-    }
-    hasDRS = false;
-}
-
 Car::Car(const string &model, string tires, int numberOfLaps, Person* driver) : 
     model(model),
     tires(tires),

@@ -4,18 +4,6 @@
 
 using namespace std;
 
-Race::Race() 
-{
-    name = "NULL Race";
-    totalLaps = 0;
-    teams = list<Team*>();
-    cars = (Car**) malloc(sizeof(Car) * 2);
-    if (cars == NULL) {
-        cout << "Failed to allocate memory for drivers" << endl;
-        exit(1);
-    }
-}
-
 Race::Race(const string &name, int totalLaps) : 
     name(name), 
     totalLaps(totalLaps) 

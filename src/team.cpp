@@ -4,31 +4,6 @@
 
 using namespace std;
 
-Team::Team() 
-{
-    name = "NULL Team";
-    principal = (Person*) malloc(sizeof(Person));
-    if (principal == NULL) {
-        cout << "Failed to allocate memory for principal" << endl;
-        exit(1);
-    }
-    car1 = (Car*) malloc(sizeof(Car));
-    if (car1 == NULL) {
-        cout << "Failed to allocate memory for car" << endl;
-        exit(1);
-    }
-    car2 = (Car*) malloc(sizeof(Car));
-    if (car2 == NULL) {
-        cout << "Failed to allocate memory for car" << endl;
-        exit(1);
-    }
-    mechanic = (Person*) malloc(sizeof(Person));
-    if (mechanic == NULL) {
-        cout << "Failed to allocate memory for mechanic" << endl;
-        exit(1);
-    }
-}
-
 Team::Team(const string &name, Person* principal, Car* car1, Car* car2, Person* mechanic) : 
     name(name), 
     principal(principal), 

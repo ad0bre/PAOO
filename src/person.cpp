@@ -3,13 +3,6 @@
 
 using namespace std;
 
-Person::Person() 
-{
-    name = "";
-    age = 0;
-    country = "";
-}
-
 Person::Person(string name, int age, string country) : 
     name(name), 
     age(age), 

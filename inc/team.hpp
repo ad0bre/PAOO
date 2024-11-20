@@ -15,7 +15,7 @@ private:
     Car* car2;
     Person* mechanic;
 public:
-    Team();
+    Team() = delete;
     Team(const string &name, Person* principal, Car* car1, Car* car2, Person* mechanic);
     string getName();
     void replacePrincipal(Person* principal);

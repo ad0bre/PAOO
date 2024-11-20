@@ -11,7 +11,7 @@ class Person {
         int age;
         string country;
     public:
-        Person();
+        Person() = delete;
         Person(string name, int age, string country);
         string getName();
         string getCountry();

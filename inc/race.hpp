@@ -15,7 +15,7 @@ class Race {
         Car** cars;
         int totalLaps;
     public:
-        Race();
+        Race() = delete;
         Race(const string &name, int totalLaps);
         string getName();
         void addTeam(Team* team);
