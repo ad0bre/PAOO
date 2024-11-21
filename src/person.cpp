@@ -39,7 +39,7 @@ Person& Person::operator=(const Person& person)
     if (this == &person) {
         return *this;
     }
-    name = person.name;
+    name.assign(person.name);
     age = person.age;
     country = person.country;
     return *this;

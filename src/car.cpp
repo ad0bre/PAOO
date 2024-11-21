@@ -18,12 +18,6 @@ string Car::getModel()
     return model;
 }
 
-void Car::replaceDriver(Person* driver)
-{
-    this->driver = driver;
-    cout << "Driver of car " << this->getModel() << " replaced" << endl;
-}
-
 void Car::enableDRS()
 {
     hasDRS = true;
@@ -60,7 +54,7 @@ Car& Car::operator=(const Car& car)
     hasDRS = car.hasDRS;
     tires.assign(car.tires);
     numberOfLaps = car.numberOfLaps;
-    replaceDriver(car.driver);
+    driver = car.driver;
     return *this;
 }
 
@@ -84,16 +78,17 @@ Car::Car(const Car& car) :
         cout << "Called Car copy constructor: Car (" << car.model << ")." << endl;
     }
 
-Car& Car::operator=(Car&& other) noexcept {
-        if (this != &other) {
-            model = std::move(other.model);
-            tires = std::move(other.tires);
-            numberOfLaps = other.numberOfLaps;
-            hasDRS = other.hasDRS;
-
-            delete driver;       // Clean up existing resource
-            driver = other.driver; // Transfer ownership
-            other.driver = nullptr; // Leave source in a valid state
-        }
-        return *this;
+Car::Car(Car&& car) :
+    model(car.model),
+    tires(car.tires),
+    driver(car.driver),
+    numberOfLaps(car.numberOfLaps),
+    hasDRS(car.hasDRS) {
+        cout << "Called Car move constructor: Car (" << car.model << ")." << endl;
+        car.driver = nullptr;
     }
+
+bool Car::operator==(const Car& car)
+{
+    return model == car.model && driver == car.driver;
+}

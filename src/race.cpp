@@ -59,7 +59,7 @@ void Race::simulateRace()
 
     int totalCars = teams.size() * 2;
 
-    Car* carInFront = new Car("null", "null", 0, nullptr);
+    Car* carInFront = new Car("", "", 0, new Person("", 0, ""));
 
     for (int i = 0; i < totalLaps; i++) {
         cout << "|            Lap " << i + 1 << "          |" << endl;
@@ -91,8 +91,7 @@ void Race::simulateRace()
         "2. " << cars[1].getDriver()->getName() << endl <<
         "3. " << cars[2].getDriver()->getName() << endl << endl;
     
-    carInFront->replaceDriver(nullptr);
-    delete carInFront;
+    carInFront = nullptr;
 }
 
 Race& Race::operator=(const Race &race)
@@ -115,9 +114,10 @@ Race& Race::operator=(const Race &race)
 
 Race::~Race() 
 {
-    delete cars;
+    cout << "Destorying race object:" << name << endl;
     for (Team* team : teams) {
         delete team;
     }
     teams.clear();
+    free(cars);
 }

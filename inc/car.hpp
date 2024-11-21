@@ -18,7 +18,6 @@ public:
     Car() = delete;
     Car(const string &model,string tires, int numberOfLaps, Person* driver);
     string getModel();
-    void replaceDriver(Person* driver);
     void enableDRS();
     void disableDRS();
     bool hasDRSActive();
@@ -27,9 +26,9 @@ public:
     ~Car();
     Person* getDriver();
     Car(const Car& car);
-    Car(const Car&& car) = delete;
+    Car(Car&& car);
     Car& operator=(const Car&& car) = delete;
-    Car& operator=(Car&& other) noexcept;
+    bool operator==(const Car& car);
 };
 
 #endif
