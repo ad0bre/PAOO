@@ -34,6 +34,8 @@ string Person::toString()
 Person::~Person() 
 {
     cout << "Person (" << name << ") object destroyed" << endl;
+    name.clear();
+    country.clear();
 }
 
 Person& Person::operator=(const Person& person) 

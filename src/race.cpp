@@ -1,4 +1,5 @@
 #include "../inc/race.hpp"
+#include "../inc/fastestLap.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <algorithm>
@@ -59,11 +60,19 @@ void Race::simulateRace()
 
     int totalCars = teams.size() * 2;
 
-    Car* carInFront = new Car("", "", 0, new Person("", 0, ""));
+    FastestLap* fastLaps = (FastestLap*) malloc(sizeof(FastestLap) * totalLaps);
+    if (fastLaps == NULL) {
+        cout << "Failed to allocate memory for fastest laps" << endl;
+        exit(1);
+    }
+
+    Car* carInFront = new Car("", "", 0, new Driver("", 0, ""));
 
     for (int i = 0; i < totalLaps; i++) {
         cout << "|            Lap " << i + 1 << "          |" << endl;
         int lucky = rand() % totalCars;
+        FastestLap* current = new FastestLap(i + 1, rand() % 100, cars[lucky].getDriver());
+        fastLaps[i] = move(*current);
         if (lucky == 0) {
             lucky = 2;
         }
@@ -91,6 +100,11 @@ void Race::simulateRace()
         "2. " << cars[1].getDriver()->getName() << endl <<
         "3. " << cars[2].getDriver()->getName() << endl << endl;
     
+    cout << "// Fastest laps //" << endl;
+    for (int i = 0; i < totalLaps; i++) {
+        cout << fastLaps[i].toString() << endl;
+    }
+    free(fastLaps);
     free(carInFront);
 }
 

@@ -3,6 +3,7 @@
 
 #include <string>
 #include "person.hpp"
+#include "driver.hpp"
 
 using namespace std;
 
@@ -11,12 +12,12 @@ private:
     string model;
     string tires;
     int numberOfLaps;
-    Person* driver;
+    Driver* driver;
     bool hasDRS;
 
 public:
     Car() = delete;
-    Car(const string &model,string tires, int numberOfLaps, Person* driver);
+    Car(const string &model,string tires, int numberOfLaps, Driver* driver);
     string getModel();
     void enableDRS();
     void disableDRS();
@@ -24,7 +25,7 @@ public:
     string toString();
     Car& operator=(const Car& car);
     ~Car();
-    Person* getDriver();
+    Driver* getDriver();
     Car(const Car& car) = delete;
     Car(Car&& car) = delete;
     Car& operator=(const Car&& car) = delete;

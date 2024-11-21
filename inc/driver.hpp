@@ -16,9 +16,10 @@ class Driver : public Person {
         string toString();
         void addTrophy();
         ~Driver();
+        Driver(const Driver& driver);
         Driver& operator=(const Driver& driver);
         Driver(const Driver&& driver) = delete;
-        Driver& operator=(const Driver&& driver) = delete;
+        Driver& operator=(Driver&& other) noexcept = delete;
 };
 
 #endif

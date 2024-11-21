@@ -190,6 +190,30 @@ src/driver.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/race_lib.dir/build.make CMakeFiles/race_lib.dir/src/driver.cpp.s
 .PHONY : src/driver.cpp.s
 
+src/fastestLap.o: src/fastestLap.cpp.o
+.PHONY : src/fastestLap.o
+
+# target to build an object file
+src/fastestLap.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/race_lib.dir/build.make CMakeFiles/race_lib.dir/src/fastestLap.cpp.o
+.PHONY : src/fastestLap.cpp.o
+
+src/fastestLap.i: src/fastestLap.cpp.i
+.PHONY : src/fastestLap.i
+
+# target to preprocess a source file
+src/fastestLap.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/race_lib.dir/build.make CMakeFiles/race_lib.dir/src/fastestLap.cpp.i
+.PHONY : src/fastestLap.cpp.i
+
+src/fastestLap.s: src/fastestLap.cpp.s
+.PHONY : src/fastestLap.s
+
+# target to generate assembly for a file
+src/fastestLap.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/race_lib.dir/build.make CMakeFiles/race_lib.dir/src/fastestLap.cpp.s
+.PHONY : src/fastestLap.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -302,6 +326,9 @@ help:
 	@echo "... src/driver.o"
 	@echo "... src/driver.i"
 	@echo "... src/driver.s"
+	@echo "... src/fastestLap.o"
+	@echo "... src/fastestLap.i"
+	@echo "... src/fastestLap.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

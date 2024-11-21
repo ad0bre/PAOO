@@ -49,3 +49,9 @@ Driver& Driver::operator=(const Driver& driver)
     trophies = driver.trophies;
     return *this;
 }
+
+Driver::Driver(const Driver& driver) : Person(driver.name, driver.age, driver.country)
+{
+    cout << "Driver object created through copy constructor" << endl;
+    trophies = driver.trophies;
+}

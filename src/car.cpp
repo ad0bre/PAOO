@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Car::Car(const string &model, string tires, int numberOfLaps, Person* driver) : 
+Car::Car(const string &model, string tires, int numberOfLaps, Driver* driver) : 
     model(model),
     tires(tires),
     numberOfLaps(numberOfLaps),
@@ -64,7 +64,7 @@ Car::~Car()
     cout << "Car (" << model << ") object destroyed" << endl;
 }
 
-Person* Car::getDriver()
+Driver* Car::getDriver()
 {
     return driver;
 }
