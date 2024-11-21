@@ -6,7 +6,10 @@ using namespace std;
 Person::Person(string name, int age, string country) : 
     name(name), 
     age(age), 
-    country(country) {}
+    country(country) 
+{
+    cout << "Person object created" << endl;
+}
 
 string Person::getName() 
 {

@@ -25,10 +25,9 @@ public:
     Car& operator=(const Car& car);
     ~Car();
     Person* getDriver();
-    Car(const Car& car);
-    Car(Car&& car);
+    Car(const Car& car) = delete;
+    Car(Car&& car) = delete;
     Car& operator=(const Car&& car) = delete;
-    bool operator==(const Car& car);
 };
 
 #endif

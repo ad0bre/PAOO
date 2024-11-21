@@ -5,19 +5,20 @@
 #include "../inc/team.hpp"
 #include "../inc/car.hpp"
 #include "../inc/person.hpp"
+#include "../inc/driver.hpp"
 
 int main()
 {
     srand(time(NULL)); //get different results each run
 
-    Person* driver11 = new Person("Max", 26, "NL");
-    Person* driver12 = new Person("Checo", 36, "MX");
+    Driver* driver11 = new Driver("Max", 26, "NL");
+    Driver* driver12 = new Driver("Checo", 36, "MX");
 
-    Person* driver21 = new Person("Lewis", 39, "UK");
-    Person* driver22 = new Person("George", 25, "UK");
+    Driver* driver21 = new Driver("Lewis", 39, "UK");
+    Driver* driver22 = new Driver("George", 25, "UK");
 
-    Person* driver31 = new Person("Charles", 24, "MC");
-    Person* driver32 = new Person("Carlos", 27, "SP");
+    Driver* driver31 = new Driver("Charles", 24, "MC");
+    Driver* driver32 = new Driver("Carlos", 27, "SP");
 
     Person* principal1 = new Person("Christian", 44, "AU");
     Person* mechanic1 = new Person("Bob", 35, "UK");

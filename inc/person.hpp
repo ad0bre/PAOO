@@ -6,7 +6,7 @@
 using namespace std;
 
 class Person {
-    private:
+    protected:
         string name;
         int age;
         string country;
@@ -16,8 +16,8 @@ class Person {
         string getName();
         string getCountry();
         int getAge();
-        string toString();
-        ~Person();
+        virtual string toString();
+        virtual ~Person();
         Person& operator=(const Person& person);
         Person(const Person&& person) = delete;
         Person& operator=(const Person&& person) = delete;

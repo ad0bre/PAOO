@@ -68,27 +68,3 @@ Person* Car::getDriver()
 {
     return driver;
 }
-
-Car::Car(const Car& car) : 
-    model(car.model),
-    tires(car.tires),
-    driver(new Person(car.driver->getName(), car.driver->getAge(), car.driver->getCountry())),
-    numberOfLaps(car.numberOfLaps),
-    hasDRS(false) {
-        cout << "Called Car copy constructor: Car (" << car.model << ")." << endl;
-    }
-
-Car::Car(Car&& car) :
-    model(car.model),
-    tires(car.tires),
-    driver(car.driver),
-    numberOfLaps(car.numberOfLaps),
-    hasDRS(car.hasDRS) {
-        cout << "Called Car move constructor: Car (" << car.model << ")." << endl;
-        car.driver = nullptr;
-    }
-
-bool Car::operator==(const Car& car)
-{
-    return model == car.model && driver == car.driver;
-}

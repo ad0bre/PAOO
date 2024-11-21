@@ -91,7 +91,7 @@ void Race::simulateRace()
         "2. " << cars[1].getDriver()->getName() << endl <<
         "3. " << cars[2].getDriver()->getName() << endl << endl;
     
-    carInFront = nullptr;
+    free(carInFront);
 }
 
 Race& Race::operator=(const Race &race)
