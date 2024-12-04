@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <algorithm>
+#include <memory>
 
 using namespace std;
 
@@ -60,7 +61,7 @@ void Race::simulateRace()
 
     int totalCars = teams.size() * 2;
 
-    FastestLap* fastLaps = (FastestLap*) malloc(sizeof(FastestLap) * totalLaps);
+    unique_ptr<FastestLap>* fastLaps = (unique_ptr<FastestLap>*) malloc(sizeof(unique_ptr<FastestLap>) * totalLaps);
     if (fastLaps == NULL) {
         cout << "Failed to allocate memory for fastest laps" << endl;
         exit(1);
@@ -71,8 +72,8 @@ void Race::simulateRace()
     for (int i = 0; i < totalLaps; i++) {
         cout << "|            Lap " << i + 1 << "          |" << endl;
         int lucky = rand() % totalCars;
-        FastestLap* current = new FastestLap(i + 1, rand() % 100, cars[lucky].getDriver());
-        fastLaps[i] = move(*current);
+        unique_ptr<FastestLap> current (new FastestLap(i + 1, rand() % 100, cars[lucky].getDriver()));
+        fastLaps[i] = move(current);
         if (lucky == 0) {
             lucky = 2;
         }
@@ -102,7 +103,7 @@ void Race::simulateRace()
     
     cout << "// Fastest laps //" << endl;
     for (int i = 0; i < totalLaps; i++) {
-        cout << fastLaps[i].toString() << endl;
+        cout << fastLaps[i].get()->toString() << endl;
     }
     free(fastLaps);
     free(carInFront);

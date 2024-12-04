@@ -42,6 +42,8 @@ int main()
     Team* team2 = new Team("MER", principal2, car21, car22, mechanic2);
     Team* team3 = new Team("FER", principal3, car31, car32, mechanic3);
 
+    Person* p1 = new Driver("Max", 26, "NL");
+
     Race* race = new Race("Monaco GP", 10);
     race->addTeam(team1);
     race->addTeam(team2);
