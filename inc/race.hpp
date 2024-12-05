@@ -6,6 +6,7 @@
 #include <vector>
 #include <memory>
 #include "team.hpp"
+#include "fastestLap.hpp"
 
 using namespace std;
 
@@ -15,6 +16,7 @@ class Race {
         list<Team*> teams;
         shared_ptr<Car>* cars;
         int totalLaps;
+        void overtake(int totalCars);
     public:
         Race() = delete;
         Race(const string &name, int totalLaps);

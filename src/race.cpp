@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <algorithm>
 #include <memory>
+#include <mutex>
+#include <thread>
 
 using namespace std;
 
@@ -52,6 +54,8 @@ void Race::createDriversFromTeams()
     }
 }
 
+mutex mtx;
+
 void Race::simulateRace()
 {
     cout << "!!!Race start!!!" << endl;
@@ -69,40 +73,50 @@ void Race::simulateRace()
 
     for (int i = 0; i < totalLaps; i++) {
         cout << "|            Lap " << i + 1 << "          |" << endl;
-        int lucky = rand() % totalCars;
-        unique_ptr<FastestLap> current (new FastestLap(i + 1, rand() % 100, cars[lucky].get()->getDriver()));
+        int fastest = rand() % totalCars;
+        thread t1(&Race::overtake, this, totalCars);
+        thread t2(&Race::overtake, this, totalCars);
+        t1.join();
+        t2.join();
+        unique_ptr<FastestLap> current(new FastestLap(i + 1, rand() % 100, cars[fastest]->getDriver()));
         fastLaps[i] = move(current);
-        if (lucky == 0) {
-            lucky = 2;
-        }
-        if (lucky > 0) {
-            cars[lucky].get()->enableDRS();
-        }
-        
-        if (cars[lucky - 1].get()->hasDRSActive()) {
-            cars[lucky - 1].get()->disableDRS();
-        }
-        else{
-            int j = lucky;
-            cars[j - 1].swap(cars[j]);
-            cout << cars[j - 1].get()->getDriver()->getName() << " overtakes " << cars[j].get()->getDriver()->getName() << endl;
-            cars[j - 1].get()->disableDRS();
-        }
     }
 
     cout << endl << "!!!RACE IS OVER!!!" << endl;
 
-    cout << "Final standings: " << endl <<
-        "1. " << cars[0].get()->getDriver()->getName() << endl <<
-        "2. " << cars[1].get()->getDriver()->getName() << endl <<
-        "3. " << cars[2].get()->getDriver()->getName() << endl << endl;
-    
+    cout << "Final standings: " << endl
+         << "1. " << cars[0]->getDriver()->getName() << endl
+         << "2. " << cars[1]->getDriver()->getName() << endl
+         << "3. " << cars[2]->getDriver()->getName() << endl
+         << endl;
+
     cout << "// Fastest laps //" << endl;
     for (int i = 0; i < totalLaps; i++) {
-        cout << fastLaps[i].get()->toString() << endl;
+        cout << fastLaps[i]->toString() << endl;
         delete fastLaps[i].get();
     }
     free(fastLaps);
+}
+
+void Race::overtake(int totalCars)
+{
+    mtx.lock();
+    int lucky = rand() % totalCars;
+    if (lucky == 0) {
+        lucky = 2;
+    }
+    if (lucky > 0) {
+        cars[lucky]->enableDRS();
+    }
+    if (cars[lucky - 1]->hasDRSActive()) {
+        cars[lucky - 1]->disableDRS();
+    } else {
+        int j = lucky;
+        cars[j-1].swap(cars[j]);
+        cout << "/---- " << cars[j-1]->getDriver()->getName() << " overtakes " << cars[j]->getDriver()->getName() << " ----/" << endl;
+        cars[j-1]->disableDRS();
+    }
+    mtx.unlock();
 }
 
 Race& Race::operator=(const Race &race)
