@@ -4,6 +4,7 @@
 #include <string>
 #include <list>
 #include <vector>
+#include <memory>
 #include "team.hpp"
 
 using namespace std;
@@ -12,7 +13,7 @@ class Race {
     private:
         string name;
         list<Team*> teams;
-        Car* cars;
+        shared_ptr<Car>* cars;
         int totalLaps;
     public:
         Race() = delete;

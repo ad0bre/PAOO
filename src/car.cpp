@@ -60,8 +60,10 @@ Car& Car::operator=(const Car& car)
 
 Car::~Car() 
 {
-    delete driver;
     cout << "Car (" << model << ") object destroyed" << endl;
+    delete driver;
+    model.clear();
+    tires.clear();
 }
 
 Driver* Car::getDriver()

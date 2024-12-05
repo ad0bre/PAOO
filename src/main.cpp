@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
+#include <memory>
 
 #include "../inc/race.hpp"
 #include "../inc/team.hpp"
@@ -29,14 +31,14 @@ int main()
     Person* principal3 = new Person("Fred", 47, "FR");
     Person* mechanic3 = new Person("Mike", 32, "UK");
 
-    Car* car11 = new Car("1", "soft", 5, driver11);
-    Car* car12 = new Car("11", "medium", 7, driver12);
+    shared_ptr<Car> car11 (new Car("1", "soft", 5, driver11));
+    shared_ptr<Car> car12 (new Car("11", "medium", 7, driver12));
 
-    Car* car21 = new Car("44", "hard", 9, driver21);
-    Car* car22 = new Car("63", "soft", 5, driver22);
+    shared_ptr<Car> car21 (new Car("44", "hard", 9, driver21));
+    shared_ptr<Car> car22 (new Car("63", "soft", 5, driver22));
 
-    Car* car31 = new Car("16", "medium", 7, driver31);
-    Car* car32 = new Car("55", "hard", 9, driver32);
+    shared_ptr<Car> car31 (new Car("16", "medium", 7, driver31));
+    shared_ptr<Car> car32 (new Car("55", "hard", 9, driver32));
 
     Team* team1 = new Team("RBR", principal1, car11, car12, mechanic1);
     Team* team2 = new Team("MER", principal2, car21, car22, mechanic2);
@@ -52,6 +54,13 @@ int main()
     race->simulateRace();
 
     delete race;
+    delete p1;
+    delete car11.get();
+    delete car12.get();
+    delete car21.get();
+    delete car22.get();
+    delete car31.get();
+    delete car32.get();
 
     return 0;
 }

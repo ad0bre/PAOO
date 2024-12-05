@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Team::Team(const string &name, Person* principal, Car* car1, Car* car2, Person* mechanic) : 
+Team::Team(const string &name, Person* principal, shared_ptr<Car> car1, shared_ptr<Car> car2, Person* mechanic) : 
     name(name), 
     principal(principal), 
     car1(car1), 
@@ -29,29 +29,17 @@ void Team::replacePrincipal(Person* principal)
     cout << "Principal of team " << this->getName() << " replaced" << endl;
 }
 
-void Team::replaceCar1(Car* car)
+void Team::replaceCar1(shared_ptr<Car> car)
 {
-    Car* oldCar = this->car1;
-    this->car1 = (Car*)malloc(sizeof(Car));
-    if (this->car1 == NULL) {
-        cout << "Failed to allocate memory for car" << endl;
-        exit(1);
-    }
-    this->car1 = car;
-    free(oldCar);
+    this->car1.swap(car);
+    car.reset();
     cout << "Car of team " << this->getName() << " replaced" << endl;
 }
 
-void Team::replaceCar2(Car* car)
+void Team::replaceCar2(shared_ptr<Car> car)
 {
-    Car* oldCar = this->car2;
-    this->car2 = (Car*)malloc(sizeof(Car));
-    if (this->car2 == NULL) {
-        cout << "Failed to allocate memory for car" << endl;
-        exit(1);
-    }
-    this->car2 = car;
-    free(oldCar);
+    this->car2.swap(car);
+    car.reset();
     cout << "Car of team " << this->getName() << " replaced" << endl;
 }
 
@@ -68,12 +56,12 @@ void Team::replaceMechanic(Person* mechanic)
     cout << "Mechanic of team " << this->getName() << " replaced" << endl;
 }
 
-Car* Team::getCar1()
+shared_ptr<Car> Team::getCar1()
 {
     return car1;
 }
 
-Car* Team::getCar2()
+shared_ptr<Car> Team::getCar2()
 {
     return car2;
 }
@@ -82,8 +70,8 @@ string Team::toString()
 {
     return "Team " + this->name + ":\n" 
         + "Principal: " + principal->getName() + "\n"
-        + "Car1: " + car1->toString() + "\n"
-        + "Car2: " + car2->toString() + "\n"
+        + "Car1: " + car1.get()->toString() + "\n"
+        + "Car2: " + car2.get()->toString() + "\n"
         + "Mechanic: " + mechanic->getName();
 }
 
@@ -103,15 +91,12 @@ Team& Team::operator=(const Team& team)
 
 Team::~Team()
 {
-    delete principal;
-    if (car1 != nullptr) {
-        delete car1;
-    }
-    if (car2 != nullptr) {
-        delete car2;
-    }
-    delete mechanic;
     cout << "Team " << name << " deleted" << endl;
+    delete principal;
+    delete mechanic;
+    car1.reset();
+    car2.reset();
+    name.clear();
 }
 
 
